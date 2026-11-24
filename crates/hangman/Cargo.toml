@@ -1,0 +1,10 @@
+[package]
+name = "hangman"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Hangman game built with Bevy"
+
+[dependencies]
+hangman-core = { path = "../hangman-core" }
+bevy = { version = "0.20.1", default-features = false, features = ["2d", "ui"] }

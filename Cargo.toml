@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = ["crates/hangman-core", "crates/hangman"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# Dev builds: keep our code fast to compile, optimize dependencies (Bevy is slow unoptimized).
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

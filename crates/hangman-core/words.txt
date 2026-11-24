@@ -1,0 +1,201 @@
+algorithm|Tech|Steps a computer follows
+ambulance|Vehicle|Rushes the sick to hospital
+anchor|Object|Keeps a ship from drifting
+antelope|Animal|Fast grazer of the savanna
+archive|Place|Where old records are kept
+asteroid|Space|Rocky body orbiting the sun
+avalanche|Nature|Snow sliding down a mountain
+backpack|Object|Carried on your shoulders
+balcony|Building|Outdoor platform above the ground
+bandwidth|Tech|How much data a link can carry
+barnacle|Animal|Clings to rocks and ship hulls
+battery|Tech|Stores power for a device
+beehive|Nature|Home of honey makers
+bicycle|Vehicle|Two wheels and pedals
+blizzard|Weather|Fierce snowstorm with high wind
+blueprint|Object|Detailed plan of a building
+bookshelf|Object|Holds your novels
+boulevard|Place|Wide city street lined with trees
+bracelet|Clothing|Jewelry worn on the wrist
+broccoli|Food|Green vegetable shaped like a tree
+buffalo|Animal|Large shaggy bovine of the plains
+butterfly|Animal|Winged insect, once a caterpillar
+cactus|Nature|Spiny desert plant
+calendar|Object|Shows days and months
+campfire|Nature|Burns at the campsite
+canyon|Nature|Deep gorge carved by a river
+capsule|Space|Small craft that carries astronauts
+caravan|Vehicle|Group of travelers crossing a desert
+carousel|Object|Merry-go-round
+castle|Building|Fortified home of a king
+caterpillar|Animal|Becomes a butterfly
+cauldron|Object|Big pot a witch stirs
+chandelier|Object|Hanging light with many bulbs
+chimney|Building|Smoke goes up through it
+cinnamon|Food|Spice from tree bark
+citadel|Building|Fortress guarding a city
+clockwork|Object|Gears and springs inside a watch
+compass|Object|Needle that points north
+compiler|Tech|Turns source code into a program
+computer|Tech|Machine you are probably using
+concrete|Object|Gray building material
+constellation|Space|Pattern of stars like Orion
+cornfield|Place|Crop growing in rows on a farm
+crayon|Object|Waxy coloring stick
+crystal|Nature|Clear mineral with flat faces
+cucumber|Food|Green and crunchy, used in pickles
+cupboard|Object|Kitchen storage with doors
+curtain|Object|Hangs over a window
+cyclone|Weather|Rotating storm over warm seas
+dandelion|Nature|Yellow weed that turns to fluff
+daylight|Nature|Light from the sun
+deadline|Object|The time something is due
+diamond|Nature|Hardest natural gemstone
+dinosaur|Animal|Extinct giant reptile
+dolphin|Animal|Smart sea mammal that clicks
+dragonfly|Animal|Insect with four shimmering wings
+dungeon|Building|Dark prison under a castle
+eclipse|Space|Moon blocks the sun
+elephant|Animal|Largest land animal, has a trunk
+elevator|Building|Lifts you between floors
+embroidery|Craft|Stitched designs on fabric
+engine|Tech|Makes a car go
+envelope|Object|Holds a letter
+equator|Place|Line around the middle of Earth
+explorer|Person|Travels to uncharted places
+factory|Building|Where goods are manufactured
+feather|Nature|Light part of a bird's coat
+fireplace|Building|Hearth for a cozy fire
+firework|Object|Explodes in colorful lights
+flamingo|Animal|Pink bird standing on one leg
+flashlight|Object|Handheld beam of light
+fortress|Building|Strong walled stronghold
+fountain|Place|Water jets in a plaza
+fossil|Nature|Ancient remains in rock
+galaxy|Space|Billions of stars, like the Milky Way
+gardener|Person|Tends plants and flowers
+giraffe|Animal|Tallest animal, very long neck
+glacier|Nature|Slow river of ice
+goblin|Mythical|Sneaky green creature in fantasy
+gorilla|Animal|Large ape of African forests
+gravity|Science|Pulls things toward the ground
+guitar|Music|Six strings and a hollow body
+hammock|Object|Hanging bed between two trees
+harbor|Place|Sheltered port for boats
+harvest|Nature|Gathering ripe crops
+hedgehog|Animal|Small spiny mammal that curls up
+helicopter|Vehicle|Flies with spinning rotor blades
+highway|Place|Fast road between cities
+hourglass|Object|Sand marks the time
+hurricane|Weather|Huge tropical storm with an eye
+iceberg|Nature|Floating ice, mostly underwater
+igloo|Building|House made of snow
+jaguar|Animal|Spotted big cat of the Americas
+jigsaw|Object|Puzzle of interlocking pieces
+jungle|Nature|Dense tropical forest
+kangaroo|Animal|Hops and carries young in a pouch
+keyboard|Tech|You type on it
+kingdom|Place|Land ruled by a monarch
+kitchen|Building|Room where meals are cooked
+ladder|Object|Climb it rung by rung
+lantern|Object|Portable lamp with a handle
+lavender|Nature|Purple flower with calming scent
+leopard|Animal|Spotted cat that rests in trees
+library|Building|Borrow books here
+lighthouse|Building|Tower that warns ships
+lobster|Animal|Red when cooked, has claws
+magnet|Science|Attracts iron
+mammoth|Animal|Extinct woolly elephant relative
+mandolin|Music|Small plucked string instrument
+marathon|Sport|Long race of 26 miles
+marble|Object|Small glass ball, or polished stone
+meadow|Nature|Grassy field full of wildflowers
+melody|Music|The tune of a song
+meteor|Space|Shooting star
+microscope|Science|Makes tiny things visible
+mirror|Object|Shows your reflection
+mountain|Nature|Very high landform
+mushroom|Food|Fungus with a cap and stem
+narwhal|Animal|Whale with a long tusk
+necklace|Clothing|Jewelry worn around the neck
+notebook|Object|Pages for writing notes
+nutmeg|Food|Spice grated over eggnog
+oasis|Place|Green spot in a desert
+octopus|Animal|Eight arms, three hearts
+orchard|Place|Field of fruit trees
+origami|Craft|Japanese paper folding
+oyster|Animal|Shellfish that may hold a pearl
+paddle|Object|Used to row a canoe
+pancake|Food|Flat breakfast cake with syrup
+parachute|Object|Slows a skydiver's fall
+passport|Object|Needed to travel abroad
+peacock|Animal|Bird with a fan of colorful tail
+pelican|Animal|Seabird with a big pouched bill
+pendulum|Object|Swings in a grandfather clock
+penguin|Animal|Flightless bird of the cold south
+pepper|Food|Black spice for the table
+pineapple|Food|Spiky tropical fruit
+pirate|Person|Sails the seas seeking treasure
+planet|Space|Orbits a star
+platypus|Animal|Egg-laying mammal with a duck bill
+pocket|Clothing|Sewn into pants to hold things
+pottery|Craft|Shaped and fired clay
+pyramid|Building|Ancient Egyptian tomb
+quarry|Place|Pit where stone is dug
+rabbit|Animal|Long ears, hops, loves carrots
+rainbow|Weather|Arc of colors after rain
+raccoon|Animal|Masked bandit that washes food
+reindeer|Animal|Pulls Santa's sleigh
+revolver|Object|Handgun with a spinning cylinder
+rhinoceros|Animal|Thick-skinned animal with a horn
+riddle|Object|Puzzling question to solve
+rocket|Space|Launches into orbit
+saddle|Object|Seat on a horse
+sailboat|Vehicle|Wind pushes it across water
+sandwich|Food|Fillings between two slices of bread
+satellite|Space|Orbits the Earth
+scarecrow|Object|Guards a field from crows
+scissors|Object|Two blades that cut paper
+scorpion|Animal|Arachnid with a stinging tail
+seashell|Nature|Found on the beach
+shadow|Nature|Dark shape blocking the light
+skeleton|Science|Frame of bones
+sparrow|Animal|Small brown songbird
+spider|Animal|Eight legs, spins a web
+squirrel|Animal|Buries acorns, bushy tail
+staircase|Building|Steps between floors
+starfish|Animal|Five-armed sea creature
+submarine|Vehicle|Travels underwater
+sunflower|Nature|Tall yellow flower that follows the sun
+surfboard|Sport|Ride a wave on it
+sweater|Clothing|Knitted top for cold days
+teapot|Object|Pours your afternoon brew
+telescope|Science|Look at distant stars
+thunder|Weather|Rumble after lightning
+tiger|Animal|Striped big cat
+tornado|Weather|Twisting funnel of wind
+trampoline|Sport|Bounce on it
+treasure|Object|Pirates bury it
+trumpet|Music|Brass horn with three valves
+tunnel|Place|Passage through a mountain
+turtle|Animal|Carries its shell home
+umbrella|Object|Keeps rain off you
+unicorn|Mythical|Horse with a single horn
+universe|Space|Everything that exists
+valley|Nature|Low land between hills
+vampire|Mythical|Fanged creature of the night
+vessel|Vehicle|A ship or boat
+village|Place|Small rural settlement
+violin|Music|Bowed string instrument
+volcano|Nature|Erupts with lava
+waffle|Food|Grid-patterned breakfast treat
+walrus|Animal|Tusked seal-like sea mammal
+waterfall|Nature|River dropping over a cliff
+whisper|Sound|Very quiet speech
+windmill|Building|Blades turn in the breeze
+wizard|Mythical|Casts spells with a staff
+wolverine|Animal|Fierce weasel relative
+xylophone|Music|Struck wooden bars make notes
+yacht|Vehicle|Luxury sailing vessel
+zebra|Animal|Striped horse relative
+zeppelin|Vehicle|Rigid airship

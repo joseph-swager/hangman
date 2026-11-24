@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Hangman
+GenericName=Word Game
+Comment=Guess the word before the figure is complete
+Exec=hangman
+Icon=hangman
+Terminal=false
+Categories=Game;
+Keywords=hangman;word;game;
+StartupWMClass=hangman

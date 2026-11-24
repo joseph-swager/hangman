@@ -1,0 +1,32 @@
+# Build output
+target/
+dist/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*~
+
+# Secrets / local environment
+.env
+.env.*
+*.pem
+*.key
+
+# Editor and IDE state
+.idea/
+.vscode/
+*.iml
+
+# Claude Code local files
+.claude/
+CLAUDE.local.md
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Screenshots / scratch captures from testing
+*.png
+!packaging/**/*.png

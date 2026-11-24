@@ -14,6 +14,7 @@ Targets Linux, macOS and Windows.
   
   Changing the difficulty starts a new game. While the menu is open the game ignores the keyboard.
 - **Tab** flips Easy/Hard without opening the menu.
+- **Quit**: the last button in the settings menu, or **Ctrl+Q** (**Cmd+Q** on macOS). On Windows and most Linux desktops **Alt+F4** and the title-bar close/minimize buttons also work.
 - Your difficulty is remembered between sessions (see *Settings file* below).
 - The window scales to any size, including tiled windows.
 

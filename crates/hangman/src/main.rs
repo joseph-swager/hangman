@@ -563,15 +563,66 @@ fn spawn_settings(commands: &mut Commands, images: &mut Assets<Image>) {
                         .observe(|_: On<PointerClick>, mut session: ResMut<Session>| {
                             session.settings_open = false;
                         });
+
+                    // Quit is last: the one way out that works on every OS and window manager.
+                    panel
+                        .spawn((
+                            Node {
+                                padding: UiRect::axes(Val::Px(18.0), Val::Px(11.0)),
+                                margin: UiRect::top(Val::Px(6.0)),
+                                align_self: AlignSelf::FlexEnd,
+                                border_radius: BorderRadius::all(Val::Px(8.0)),
+                                ..default()
+                            },
+                            BackgroundColor(KEY_IDLE),
+                        ))
+                        .with_child(label(&format!("Quit  ({QUIT_HINT})"), 19.0, TEXT))
+                        .observe(|_: On<PointerClick>, mut exit: MessageWriter<AppExit>| {
+                            exit.write(AppExit::Success);
+                        });
                 });
         });
 }
 
 // ---------- systems ----------
 
-fn keyboard_input(mut events: MessageReader<KeyboardInput>, mut session: ResMut<Session>) {
+/// Quit shortcut: Cmd+Q on macOS, Ctrl+Q elsewhere.
+#[cfg(target_os = "macos")]
+const QUIT_HINT: &str = "Cmd+Q";
+#[cfg(not(target_os = "macos"))]
+const QUIT_HINT: &str = "Ctrl+Q";
+
+fn is_quit_modifier(ev: &KeyboardInput) -> bool {
+    if cfg!(target_os = "macos") {
+        matches!(ev.key_code, KeyCode::SuperLeft | KeyCode::SuperRight)
+            || ev.logical_key == Key::Super
+    } else {
+        matches!(ev.key_code, KeyCode::ControlLeft | KeyCode::ControlRight)
+            || ev.logical_key == Key::Control
+    }
+}
+
+fn keyboard_input(
+    mut events: MessageReader<KeyboardInput>,
+    mut session: ResMut<Session>,
+    mut exit: MessageWriter<AppExit>,
+    mut modifier_down: Local<bool>,
+) {
     for ev in events.read() {
+        // Track the quit modifier from the ordered event stream, so a fast
+        // press+release inside one frame is still seen in the right order.
+        if is_quit_modifier(ev) {
+            *modifier_down = ev.state == ButtonState::Pressed;
+            continue;
+        }
         if ev.state != ButtonState::Pressed {
+            continue;
+        }
+        // Quit works everywhere, even with the menu open (checked before letter guessing).
+        let is_q = ev.key_code == KeyCode::KeyQ
+            || matches!(&ev.logical_key, Key::Character(c) if c.eq_ignore_ascii_case("q"));
+        if is_q && *modifier_down {
+            exit.write(AppExit::Success);
             continue;
         }
         // Esc opens/closes the settings menu from anywhere.

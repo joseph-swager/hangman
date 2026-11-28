@@ -4,11 +4,15 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 use bevy::asset::RenderAssetUsages;
 use bevy::camera::ScalingMode;
+use bevy::ecs::system::NonSendMarker;
 use bevy::input::keyboard::{Key, KeyboardInput};
 use bevy::input::ButtonState;
 use bevy::prelude::*;
 use bevy::render::render_resource::{Extent3d, TextureDimension, TextureFormat};
+use bevy::window::PrimaryWindow;
+use bevy::winit::WINIT_WINDOWS;
 use hangman_core::{entries, Difficulty, Game, Status, MAX_WRONG};
+use winit::window::Icon;
 
 // ---------- palette ----------
 const BG: Color = Color::srgb(0.09, 0.10, 0.13);
@@ -43,7 +47,7 @@ impl Session {
     fn new() -> Self {
         let mut s = Self {
             game: Game::new("hangman"),
-            // HANGMAN_MODE=easy|hard overrides the saved setting (handy for testing);
+            // HANGMAN_MODE=easy|medium|hard overrides the saved setting (handy for testing);
             // otherwise use what the player picked last time, defaulting to Easy.
             difficulty: std::env::var("HANGMAN_MODE")
                 .ok()
@@ -94,8 +98,8 @@ impl Session {
         }
     }
 
-    fn toggle_difficulty(&mut self) {
-        self.set_difficulty(self.difficulty.toggled());
+    fn cycle_difficulty(&mut self) {
+        self.set_difficulty(self.difficulty.next());
     }
 }
 
@@ -144,6 +148,7 @@ fn main() {
             ..default()
         }))
         .add_systems(Startup, (setup_camera, spawn_gallows, spawn_ui))
+        .add_systems(Update, set_window_icon)
         .add_systems(
             Update,
             (
@@ -155,6 +160,35 @@ fn main() {
                 .chain(),
         )
         .run();
+}
+
+/// Side length of `assets/window-icon.rgba` (see `packaging/generate_icons.py`).
+const WINDOW_ICON_SIZE: u32 = 64;
+
+/// Set the title-bar icon once the native window exists. Used on Windows and X11;
+/// macOS takes it from the app bundle and Wayland from `hangman.desktop`.
+fn set_window_icon(
+    primary: Query<Entity, With<PrimaryWindow>>,
+    mut done: Local<bool>,
+    // winit requires window calls to happen on the main thread.
+    _main_thread: NonSendMarker,
+) {
+    if *done {
+        return;
+    }
+    let Ok(entity) = primary.single() else {
+        return;
+    };
+    WINIT_WINDOWS.with_borrow(|windows| {
+        if let Some(window) = windows.get_window(entity) {
+            let rgba = include_bytes!("../assets/window-icon.rgba").to_vec();
+            match Icon::from_rgba(rgba, WINDOW_ICON_SIZE, WINDOW_ICON_SIZE) {
+                Ok(icon) => window.set_window_icon(Some(icon)),
+                Err(err) => warn!("could not set the window icon: {err}"),
+            }
+            *done = true;
+        }
+    });
 }
 
 /// Design size of the scene. The camera and UI scale so this area always fits the window.
@@ -518,6 +552,7 @@ fn spawn_settings(commands: &mut Commands, images: &mut Assets<Image>) {
 
                     let options = [
                         (Difficulty::Easy, "Shows a category and a short clue"),
+                        (Difficulty::Medium, "Shows the category only"),
                         (Difficulty::Hard, "No hints. Just the blanks"),
                     ];
                     for (difficulty, blurb) in options {
@@ -642,8 +677,8 @@ fn keyboard_input(
             }
             // Enter starts a new game once this one is over, or on demand.
             Key::Enter => session.restart(),
-            // Tab quickly flips Easy/Hard (and starts a new game).
-            Key::Tab => session.toggle_difficulty(),
+            // Tab cycles Easy -> Medium -> Hard (and starts a new game).
+            Key::Tab => session.cycle_difficulty(),
             _ => {}
         }
     }
@@ -694,7 +729,7 @@ fn refresh_view(
     let g = &session.game;
     let wrong_count = g.wrong_count();
     let status = g.status();
-    let hints = session.difficulty.shows_hints();
+    let difficulty = session.difficulty;
 
     for (part, mut vis) in &mut parts {
         *vis = if wrong_count >= part.0 {
@@ -755,20 +790,21 @@ fn refresh_view(
                 }
             },
             Field::Category => {
-                text.0 = if !hints {
+                let shown = difficulty.shows_category();
+                text.0 = if !shown {
                     "No hints".to_string()
                 } else if g.category().is_empty() {
                     String::new()
                 } else {
                     format!("Category: {}", g.category())
                 };
-                color.0 = if hints { ACCENT } else { HARD };
+                color.0 = if shown { ACCENT } else { HARD };
             }
             Field::Clue => {
-                text.0 = if hints {
-                    g.clue().to_string()
-                } else {
-                    "You're on your own!".to_string()
+                text.0 = match difficulty {
+                    d if d.shows_clue() => g.clue().to_string(),
+                    d if d.shows_category() => String::new(),
+                    _ => "You're on your own!".to_string(),
                 };
             }
         }

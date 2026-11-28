@@ -69,26 +69,37 @@ pub enum Difficulty {
     /// Shows the word's category and a clue.
     #[default]
     Easy,
+    /// Shows the word's category only.
+    Medium,
     /// No hints at all.
     Hard,
 }
 
 impl Difficulty {
-    pub fn shows_hints(self) -> bool {
+    /// Every level, from most help to least.
+    pub const ALL: [Difficulty; 3] = [Difficulty::Easy, Difficulty::Medium, Difficulty::Hard];
+
+    pub fn shows_category(self) -> bool {
+        self != Difficulty::Hard
+    }
+
+    pub fn shows_clue(self) -> bool {
         self == Difficulty::Easy
     }
 
     pub fn label(self) -> &'static str {
         match self {
             Difficulty::Easy => "Easy",
+            Difficulty::Medium => "Medium",
             Difficulty::Hard => "Hard",
         }
     }
 
-    /// Stable lowercase name used when saving settings: `"easy"` or `"hard"`.
+    /// Stable lowercase name used when saving settings: `"easy"`, `"medium"` or `"hard"`.
     pub fn name(self) -> &'static str {
         match self {
             Difficulty::Easy => "easy",
+            Difficulty::Medium => "medium",
             Difficulty::Hard => "hard",
         }
     }
@@ -97,14 +108,17 @@ impl Difficulty {
     pub fn from_name(name: &str) -> Option<Self> {
         match name.trim().to_ascii_lowercase().as_str() {
             "easy" => Some(Difficulty::Easy),
+            "medium" => Some(Difficulty::Medium),
             "hard" => Some(Difficulty::Hard),
             _ => None,
         }
     }
 
-    pub fn toggled(self) -> Self {
+    /// The following level, wrapping from Hard back to Easy.
+    pub fn next(self) -> Self {
         match self {
-            Difficulty::Easy => Difficulty::Hard,
+            Difficulty::Easy => Difficulty::Medium,
+            Difficulty::Medium => Difficulty::Hard,
             Difficulty::Hard => Difficulty::Easy,
         }
     }
@@ -414,22 +428,27 @@ mod tests {
     }
 
     #[test]
-    fn difficulty_toggles_and_gates_hints() {
+    fn difficulty_gates_hints() {
         assert_eq!(Difficulty::default(), Difficulty::Easy);
-        assert!(Difficulty::Easy.shows_hints());
-        assert!(!Difficulty::Hard.shows_hints());
-        assert_eq!(Difficulty::Easy.toggled(), Difficulty::Hard);
-        assert_eq!(Difficulty::Hard.toggled(), Difficulty::Easy);
-        assert_eq!(Difficulty::Hard.label(), "Hard");
+        let shown = Difficulty::ALL.map(|d| (d.shows_category(), d.shows_clue()));
+        assert_eq!(shown, [(true, true), (true, false), (false, false)]);
+        assert_eq!(Difficulty::Medium.label(), "Medium");
+    }
+
+    #[test]
+    fn difficulty_cycles_through_every_level() {
+        assert_eq!(Difficulty::Easy.next(), Difficulty::Medium);
+        assert_eq!(Difficulty::Medium.next(), Difficulty::Hard);
+        assert_eq!(Difficulty::Hard.next(), Difficulty::Easy);
     }
 
     #[test]
     fn difficulty_names_round_trip() {
-        for d in [Difficulty::Easy, Difficulty::Hard] {
+        for d in Difficulty::ALL {
             assert_eq!(Difficulty::from_name(d.name()), Some(d));
         }
         assert_eq!(Difficulty::from_name("  HARD "), Some(Difficulty::Hard));
-        assert_eq!(Difficulty::from_name("medium"), None);
+        assert_eq!(Difficulty::from_name("impossible"), None);
         assert_eq!(Difficulty::from_name(""), None);
     }
 

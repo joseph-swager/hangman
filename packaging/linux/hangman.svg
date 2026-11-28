@@ -1,9 +1,17 @@
-q<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <rect width="256" height="256" rx="48" fill="#171a21"/>
-  <g stroke-linecap="round" fill="none">
-    <path d="M56 212h112M82 212V44h96" stroke="#9e7449" stroke-width="12"/>
-    <path d="M178 44v26" stroke="#ccb88c" stroke-width="5"/>
-    <circle cx="178" cy="90" r="20" stroke="#eeeef2" stroke-width="6"/>
-    <path d="M178 110v52M178 122l-24 22M178 122l24 22M178 162l-20 34M178 162l20 34" stroke="#eeeef2" stroke-width="6"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#343c55"/><stop offset="1" stop-color="#12141b"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd877"/><stop offset="1" stop-color="#eca63c"/></linearGradient>
+</defs>
+<rect width="1024" height="1024" rx="228" fill="url(#bg)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="68">
+<path stroke="#a8743f" d="M170 856H600"/><path stroke="#bb844c" d="M280 850V176H690"/><path stroke="#a8743f" d="M280 350L450 180"/>
+</g>
+<path d="M668 180V420" stroke="#e0cc9c" stroke-width="30" stroke-linecap="round"/>
+<g transform="rotate(8 668 420)">
+<rect x="498" y="420" width="340" height="360" rx="64" fill="#8f5f1d"/>
+<rect x="498" y="400" width="340" height="354" rx="64" fill="url(#gold)"/>
+<path d="M604 522C604 436 738 438 738 522C738 582 668 582 668 640" fill="none" stroke="#252a3a" stroke-width="54" stroke-linecap="round"/>
+<circle cx="668" cy="705" r="33" fill="#252a3a"/>
+</g>
 </svg>

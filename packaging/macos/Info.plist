@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key><string>Hangman</string>
+  <key>CFBundleDisplayName</key><string>Hangman</string>
+  <key>CFBundleIdentifier</key><string>local.hangman</string>
+  <key>CFBundleExecutable</key><string>hangman</string>
+  <key>CFBundleIconFile</key><string>hangman</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>@VERSION@</string>
+  <key>CFBundleVersion</key><string>@VERSION@</string>
+  <key>LSApplicationCategoryType</key><string>public.app-category.word-games</string>
+  <key>NSHighResolutionCapable</key><true/>
+</dict>
+</plist>

@@ -17,9 +17,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { name: linux,   os: ubuntu-latest,  bin: hangman,     artifact: hangman-linux-x86_64 }
-          - { name: macos,   os: macos-latest,   bin: hangman,     artifact: hangman-macos-arm64 }
-          - { name: windows, os: windows-latest, bin: hangman.exe, artifact: hangman-windows-x86_64 }
+          - { name: linux,   os: ubuntu-latest,  artifact: hangman-linux-x86_64, path: target/release/hangman }
+          - { name: macos,   os: macos-latest,   artifact: hangman-macos-arm64, path: dist/hangman-macos-arm64.tar.gz }
+          - { name: windows, os: windows-latest, artifact: hangman-windows-x86_64, path: target/release/hangman.exe }
     steps:
       - uses: actions/checkout@v4
 
@@ -47,10 +47,14 @@ jobs:
       - name: Build release
         run: cargo build --release --locked -p hangman
 
+      - name: Bundle macOS app
+        if: runner.os == 'macOS'
+        run: packaging/macos/bundle.sh target/release/hangman ${{ matrix.path }}
+
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
-          path: target/release/${{ matrix.bin }}
+          path: ${{ matrix.path }}
 
   release:
     name: publish release
@@ -68,7 +72,9 @@ jobs:
           cd dist
           for d in */; do
             name="${d%/}"
-            if [[ "$name" == *windows* ]]; then (cd "$name" && zip -r "../$name.zip" .); else tar -czf "$name.tar.gz" -C "$name" .; fi
+            if [[ "$name" == *windows* ]]; then (cd "$name" && zip -r "../$name.zip" .)
+            elif [[ "$name" == *macos* ]]; then mv "$name"/*.tar.gz . # already archived Hangman.app
+            else tar -czf "$name.tar.gz" -C "$name" .; fi
           done
       - uses: softprops/action-gh-release@v2
         with:

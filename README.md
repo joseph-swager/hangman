@@ -10,10 +10,11 @@ Targets Linux, macOS and Windows.
 - **Enter** (or the *New game* button) starts a new game.
 - **Gear button** (top-right) or **Esc** opens the settings menu, where you choose the difficulty:
   - **Easy** (default): shows the word's category and a short clue.
+  - **Medium**: shows the category only, no clue.
   - **Hard**: no hints at all.
   
   Changing the difficulty starts a new game. While the menu is open the game ignores the keyboard.
-- **Tab** flips Easy/Hard without opening the menu.
+- **Tab** cycles Easy → Medium → Hard without opening the menu.
 - **Quit**: the last button in the settings menu, or **Ctrl+Q** (**Cmd+Q** on macOS). On Windows and most Linux desktops **Alt+F4** and the title-bar close/minimize buttons also work.
 - Your difficulty is remembered between sessions (see *Settings file* below).
 - The window scales to any size, including tiled windows.
@@ -50,7 +51,7 @@ sudo apt install libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev \
 
 ## Settings file
 
-The chosen difficulty is saved to a one-line text file, `difficulty=easy` or `difficulty=hard`:
+The chosen difficulty is saved to a one-line text file, `difficulty=easy`, `difficulty=medium` or `difficulty=hard`:
 
 | OS | Location |
 |---|---|
@@ -59,7 +60,7 @@ The chosen difficulty is saved to a one-line text file, `difficulty=easy` or `di
 | Windows | `%APPDATA%\hangman\settings.txt` |
 
 Delete the file to reset to Easy. If it can't be read or written, the game just uses the default.
-`HANGMAN_MODE=easy|hard` overrides the saved value for one run.
+`HANGMAN_MODE=easy|medium|hard` overrides the saved value for one run.
 
 ## Install as an app (Linux, per-user, no sudo)
 
@@ -68,14 +69,28 @@ Delete the file to reset to Easy. If it can't be read or written, the game just 
 ./install.sh --uninstall
 ```
 
-Installs `~/.local/bin/hangman`, an icon, and `~/.local/share/applications/hangman.desktop`.
+Installs `~/.local/bin/hangman`, the icons, and `~/.local/share/applications/hangman.desktop`.
 
 ## macOS and Windows
 
 The code is cross-platform, but you can't easily cross-compile from Linux.
 `.github/workflows/ci.yml` builds, lints and tests on Linux, macOS and Windows, uploads the
-binaries as artifacts, and attaches them to a GitHub release when you push a `v*` tag.
-macOS binaries are unsigned; Gatekeeper will ask you to allow them on first run.
+builds as artifacts, and attaches them to a GitHub release when you push a `v*` tag.
+Windows gets `hangman.exe` with the icon embedded; macOS gets `Hangman.app` in a `.tar.gz`.
+The macOS app is only ad-hoc signed (not notarized), so Gatekeeper will ask you to allow it on
+first run.
+
+## Icons
+
+The design lives in `packaging/generate_icons.py`. After changing it, run the script (needs
+`rsvg-convert` and ImageMagick) and commit the regenerated files:
+
+| Used by | File |
+|---|---|
+| Linux launcher | `packaging/linux/hangman.svg`, `hangman-16.png` |
+| Windows executable | `packaging/windows/hangman.ico` |
+| macOS app bundle | `packaging/macos/hangman.icns` |
+| Window icon (Windows, X11) | `crates/hangman/assets/window-icon.rgba` |
 
 ## Development notes
 

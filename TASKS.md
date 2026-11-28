@@ -32,3 +32,6 @@ Goal: a finished Bevy hangman game that runs on this machine (Linux/Omarchy) and
 - [x] 22. App: settings module (config path per OS, parse/render, load/save) + tests
 - [x] 23. Load at startup, save on change; HANGMAN_MODE env still overrides
 - [x] 24. Verify persistence across real launches (isolated config dir), reinstall, README
+
+## Round 5: medium difficulty
+- [x] 25. Medium shows the category only: core, menu, Tab cycle, tests, README, reinstall

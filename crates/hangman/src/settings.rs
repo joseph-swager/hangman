@@ -86,7 +86,7 @@ mod tests {
 
     #[test]
     fn render_then_parse_round_trips() {
-        for d in [Difficulty::Easy, Difficulty::Hard] {
+        for d in Difficulty::ALL {
             assert_eq!(parse(&render(d)), Some(d));
         }
     }

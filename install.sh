@@ -7,6 +7,7 @@ cd "$(dirname "$0")"
 PREFIX="${PREFIX:-$HOME/.local}"
 BIN="$PREFIX/bin/hangman"
 ICON="$PREFIX/share/icons/hicolor/scalable/apps/hangman.svg"
+SMALL_ICON="$PREFIX/share/icons/hicolor/16x16/apps/hangman.png"
 DESKTOP="$PREFIX/share/applications/hangman.desktop"
 
 refresh_caches() {
@@ -15,7 +16,7 @@ refresh_caches() {
 }
 
 if [[ "${1:-}" == "--uninstall" ]]; then
-  rm -fv "$BIN" "$ICON" "$DESKTOP"
+  rm -fv "$BIN" "$ICON" "$SMALL_ICON" "$DESKTOP"
   refresh_caches
   echo "Hangman uninstalled."
   exit 0
@@ -26,6 +27,7 @@ cargo build --release -p hangman
 
 install -Dm755 target/release/hangman "$BIN"
 install -Dm644 packaging/linux/hangman.svg "$ICON"
+install -Dm644 packaging/linux/hangman-16.png "$SMALL_ICON"
 install -Dm644 packaging/linux/hangman.desktop "$DESKTOP"
 refresh_caches
 
